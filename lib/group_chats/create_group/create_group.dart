@@ -60,6 +60,7 @@ class _CreateGroupState extends State<CreateGroup> {
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.teal,
         title: Text("Group Name"),
       ),
       body: isLoading

@@ -1,6 +1,7 @@
 import 'package:chat_app/home.dart';
 import 'package:chat_app/methods.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class CreateAccount extends StatefulWidget {
   @override
@@ -83,7 +84,8 @@ class _CreateAccountState extends State<CreateAccount> {
                     child: Container(
                       width: size.width,
                       alignment: Alignment.center,
-                      child: field(size, "password", Icons.lock, _password),
+                      child: field(size, "password at lest 8 characters",
+                          Icons.lock, _password),
                     ),
                   ),
                   SizedBox(
@@ -128,8 +130,25 @@ class _CreateAccountState extends State<CreateAccount> {
               Navigator.push(
                   context, MaterialPageRoute(builder: (_) => HomeScreen()));
               print("Account Created Sucessfull");
+              Fluttertoast.showToast(
+                  msg: "Account Created Sucessfull",
+                  toastLength: Toast.LENGTH_SHORT,
+                  gravity: ToastGravity.CENTER,
+                  timeInSecForIosWeb: 1,
+                  backgroundColor: Colors.red,
+                  textColor: Colors.white,
+                  fontSize: 16.0);
             } else {
               print("Login Failed");
+              Fluttertoast.showToast(
+                  msg: "Login Failed",
+                  toastLength: Toast.LENGTH_SHORT,
+                  gravity: ToastGravity.CENTER,
+                  timeInSecForIosWeb: 1,
+                  backgroundColor: Colors.red,
+                  textColor: Colors.white,
+                  fontSize: 16.0);
+
               setState(() {
                 isLoading = false;
               });
@@ -137,6 +156,14 @@ class _CreateAccountState extends State<CreateAccount> {
           });
         } else {
           print("Please enter Fields");
+          Fluttertoast.showToast(
+              msg: "Please enter fields",
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.CENTER,
+              timeInSecForIosWeb: 1,
+              backgroundColor: Colors.red,
+              textColor: Colors.white,
+              fontSize: 16.0);
         }
       },
       child: Container(

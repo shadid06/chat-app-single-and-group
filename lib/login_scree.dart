@@ -2,6 +2,7 @@ import 'package:chat_app/create_account.dart';
 import 'package:chat_app/home.dart';
 import 'package:chat_app/methods.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -47,6 +48,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       "Welcome",
                       style: TextStyle(
                         fontSize: 34,
+                        color: Colors.green,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -56,7 +58,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Text(
                       "Sign In to Contiue!",
                       style: TextStyle(
-                        color: Colors.grey[700],
+                        color: Colors.redAccent,
                         fontSize: 25,
                         fontWeight: FontWeight.w500,
                       ),
@@ -91,9 +93,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Text(
                       "Create Account",
                       style: TextStyle(
-                        color: Colors.blue,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
+                        color: Colors.green,
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   )
@@ -114,13 +116,30 @@ class _LoginScreenState extends State<LoginScreen> {
           logIn(_email.text, _password.text).then((user) {
             if (user != null) {
               print("Login Sucessfull");
+              Fluttertoast.showToast(
+                  msg: "Login Sucessfull",
+                  toastLength: Toast.LENGTH_SHORT,
+                  gravity: ToastGravity.CENTER,
+                  timeInSecForIosWeb: 1,
+                  backgroundColor: Colors.red,
+                  textColor: Colors.white,
+                  fontSize: 16.0);
               setState(() {
                 isLoading = false;
               });
+
               Navigator.push(
                   context, MaterialPageRoute(builder: (_) => HomeScreen()));
             } else {
               print("Login Failed");
+              Fluttertoast.showToast(
+                  msg: "Login Failed",
+                  toastLength: Toast.LENGTH_SHORT,
+                  gravity: ToastGravity.CENTER,
+                  timeInSecForIosWeb: 1,
+                  backgroundColor: Colors.red,
+                  textColor: Colors.white,
+                  fontSize: 16.0);
               setState(() {
                 isLoading = false;
               });
@@ -128,6 +147,14 @@ class _LoginScreenState extends State<LoginScreen> {
           });
         } else {
           print("Please fill form correctly");
+          Fluttertoast.showToast(
+              msg: "Fill form correctly",
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.CENTER,
+              timeInSecForIosWeb: 1,
+              backgroundColor: Colors.red,
+              textColor: Colors.white,
+              fontSize: 16.0);
         }
       },
       child: Container(

@@ -38,6 +38,7 @@ class GroupChatRoom extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.teal,
         title: Text(groupName),
         actions: [
           IconButton(
@@ -56,7 +57,7 @@ class GroupChatRoom extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              height: size.height / 1.27,
+              height: size.height / 1.30,
               width: size.width,
               child: StreamBuilder<QuerySnapshot>(
                 stream: _firestore
@@ -110,7 +111,11 @@ class GroupChatRoom extends StatelessWidget {
                       ),
                     ),
                     IconButton(
-                        icon: Icon(Icons.send), onPressed: onSendMessage),
+                        icon: Icon(
+                          Icons.send,
+                          color: Colors.green,
+                        ),
+                        onPressed: onSendMessage),
                   ],
                 ),
               ),
@@ -134,7 +139,9 @@ class GroupChatRoom extends StatelessWidget {
               margin: EdgeInsets.symmetric(vertical: 5, horizontal: 8),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
-                color: Colors.blue,
+                color: chatMap['sendBy'] == _auth.currentUser!.displayName
+                    ? Colors.greenAccent
+                    : Colors.blue,
               ),
               child: Column(
                 children: [

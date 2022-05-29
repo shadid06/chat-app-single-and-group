@@ -4,6 +4,7 @@ import 'package:chat_app/methods.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -76,9 +77,22 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.teal,
         title: Text("Home Screen"),
         actions: [
-          IconButton(icon: Icon(Icons.logout), onPressed: () => logOut(context))
+          IconButton(
+              icon: Icon(Icons.logout),
+              onPressed: () {
+                Fluttertoast.showToast(
+                    msg: "Logout Sucessfull",
+                    toastLength: Toast.LENGTH_SHORT,
+                    gravity: ToastGravity.CENTER,
+                    timeInSecForIosWeb: 1,
+                    backgroundColor: Colors.red,
+                    textColor: Colors.white,
+                    fontSize: 16.0);
+                logOut(context);
+              })
         ],
       ),
       body: isLoading
@@ -104,7 +118,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                     child: TextField(
                       controller: _search,
                       decoration: InputDecoration(
-                        hintText: "Search",
+                        hintText: "example@gmail.com",
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),

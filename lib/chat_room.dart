@@ -101,6 +101,7 @@ class ChatRoom extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.teal,
         title: StreamBuilder<DocumentSnapshot>(
           stream:
               _firestore.collection("users").doc(userMap['uid']).snapshots(),
@@ -127,7 +128,7 @@ class ChatRoom extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              height: size.height / 1.25,
+              height: size.height / 1.30,
               width: size.width,
               child: StreamBuilder<QuerySnapshot>(
                 stream: _firestore
@@ -180,7 +181,12 @@ class ChatRoom extends StatelessWidget {
                       ),
                     ),
                     IconButton(
-                        icon: Icon(Icons.send), onPressed: onSendMessage),
+                        icon: Icon(
+                          Icons.send,
+                          color: Colors.green,
+                          size: 25,
+                        ),
+                        onPressed: onSendMessage),
                   ],
                 ),
               ),
@@ -203,7 +209,9 @@ class ChatRoom extends StatelessWidget {
               margin: EdgeInsets.symmetric(vertical: 5, horizontal: 8),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
-                color: Colors.blue,
+                color: map['sendby'] == _auth.currentUser!.displayName
+                    ? Colors.greenAccent
+                    : Colors.lightBlueAccent,
               ),
               child: Text(
                 map['message'],
